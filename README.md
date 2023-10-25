@@ -1,6 +1,6 @@
 # news_1_flutter
 
-A news Flutter project.
+A news Flutter project _ ios and android
 
 State Management (Cubit)
 
