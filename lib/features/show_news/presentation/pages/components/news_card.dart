@@ -13,7 +13,9 @@ class NewsCard extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         Navigator.push(context, MaterialPageRoute(builder: (context) {
-          return NewsViewPage(newsInfo: newsInfo,);
+          return NewsViewPage(
+            newsInfo: newsInfo,
+          );
         }));
       },
       child: Container(
@@ -29,6 +31,18 @@ class NewsCard extends StatelessWidget {
                   ? Image.network(
                       newsInfo.imageURL!,
                       fit: BoxFit.fill,
+                      errorBuilder: (BuildContext context, Object exception,
+                          StackTrace? stackTrace) {
+                        return Container(
+                          width: MediaQuery.of(context).size.width - (2 * 16), // Adjust width and height as needed
+                          height: 260,
+                          color:
+                              Colors.grey, // Placeholder color or error message
+                          child: const Center(
+                            child: Text('Failed to load image'),
+                          ),
+                        );
+                      },
                     )
                   : const SizedBox(),
             ),
@@ -53,7 +67,9 @@ class NewsCard extends StatelessWidget {
                   padding: const EdgeInsets.all(16),
                   child: Center(
                     child: Text(
-                      newsInfo.title != null ? newsInfo.title! : '-- No Title --',
+                      newsInfo.title != null
+                          ? newsInfo.title!
+                          : '-- No Title --',
                       maxLines: 2,
                       style: const TextStyle(
                           overflow: TextOverflow.ellipsis,
